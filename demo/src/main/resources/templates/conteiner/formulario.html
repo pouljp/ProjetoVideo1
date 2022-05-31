@@ -1,0 +1,60 @@
+<html>
+	<head th:replace="~{base :: head}"></head>
+	<body>	
+		<div th:replace="~{base :: logo}"></div>
+		<div class="container">
+			<div class="jumbotron mb-0">
+				<h1 class="display-4">Cliente</h1>
+			</div>
+
+	       <div class="border card-body mt-3" > 
+			<form th:object="${novoConteiner}" class="card-body" action="/conteiner/novo" method="POST">
+
+					<div>
+						<label >Cliente: </label>
+						<label th:text="${novoConteiner.cliente.nome}" > </label>
+						<br>
+						<input th:field="${novoConteiner.cliente.id}" type="hidden"/>
+						<label for="conteinerLetra"> Letras Conteiner:</label> 
+							<input th:field="*{conteinerLetra}" th:errorclass="is-invalid"  class="form-control mb-1" placeholder="(4 letras - Ex:AAAA)"/>
+							<div class="invalid-feedback" th:errors="*{conteinerLetra}">
+								Erro da Letra do Conteiner
+							</div>
+						<label for="conteinerNumero">Números Conteiner:</label> 
+							<input th:field="*{conteinerNumero}" th:errorclass="is-invalid" class="form-control mb-1" placeholder="(7 números -Ex:1234567)"/>
+								<div class="invalid-feedback" th:errors="*{conteinerNumero}">
+								Erro da Número do Conteiner
+								</div>
+						<label>Tipo:</label> 
+							<select class="custom-select mb-1" field="*{tipo}" name="tipo">
+								<option value="20">20</option>
+								<option value="40">40</option>
+							</select>
+						<label>Status:</label> 
+							<select class="custom-select mb-1" field="*{status}" name="status">
+								<option value="Cheio">Cheio</option>
+								<option value="Vazio">Vazio</option>
+							</select>
+												
+						<label>Categoria:</label> 
+							<div class="form-check ">
+								<input th:field="*{categoria}" th:errorclass="is-invalid" class="form-check-input" type="radio"  value="Importacoes" checked>
+								 <label	class="form-check-label" for="Importacao"> Importacoes</label>
+										<div class="invalid-feedback" th:errors="*{categoria}">
+										Erro no nome da Categoria 
+										</div>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" th:errorclass="is-invalid"  type="radio" name="categoria"id="categoria" value="Exportacoes"> <label
+									class="form-check-label" for="Exportacao"> Exportacoes</label>
+										<div class="invalid-feedback"  th:errors="*{categoria}">
+											Erro do nome do Cliente
+										</div>
+							</div>
+						<button class="btn btn-secondary btn-lg active" type="submit">Cadastrar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

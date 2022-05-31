@@ -1,0 +1,85 @@
+<html>
+<head th:replace="~{base :: head}"></head>
+<body>
+	<div th:replace="~{base :: logo}"></div>
+
+	<div class="container">
+		<div th:replace="~{base :: titulo('Meus Clientes')}"></div>
+
+		<nav
+			class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mt-3 mb-3">
+			<a href="cliente/formulario"><button
+					class="btn btn-outline-secondary my-2 my-sm-0">Novo
+					Cliente</button></a>
+		</nav>
+
+		<div class="card mt-3" th:each="cliente : ${clientes}">
+
+			<div class="card-header" th:text="${cliente.nome}">Cliente</div>
+
+			<a
+				th:href="@{conteiner/formulario?idCliente={id}(id = ${cliente.id}) }">
+				<button class="btn btn-outline-secondary my-2 my-sm-0">Novo
+					Conteiner</button>
+			</a>
+			<div class="card-body">
+				<div class="row">
+					<div class="card mt-12"
+						th:each="conteinerUnidade : ${cliente.conteiner}">
+
+						<div class="card mt-12">
+							<a
+								th:href="@{movimentacao/formulario?idConteiner={id}(id=${conteinerUnidade.id}) }"><button
+									class="btn btn-outline-secondary my-2 my-sm-0">Nova
+									Movimentação</button></a>
+							<div>Numeração:</div>
+							<div class="row ">
+								<div class="col-md-12">
+									<label> Letras:</label> <span
+										th:text="${conteinerUnidade.conteinerLetra}"></span>
+								</div>
+								<div class="col-md-12">
+									<label> Números:</label> <span
+										th:text="${conteinerUnidade.conteinerNumero}"></span>
+								</div>
+							</div>
+
+							<div>
+								<label> Tamanho :</label> <span
+									th:text="${conteinerUnidade.tipo}"></span>
+							</div>
+							<div>
+								<label> Status: </label><span
+									th:text="${conteinerUnidade.status}"></span>
+							</div>
+							<div>
+								<label> Categoria:</label> <span
+									th:text="${conteinerUnidade.categoria}"></span>
+							</div>
+							<div class="card mt-12"
+								th:each="movimentacaoUnidade : ${conteinerUnidade.movimentacao}">
+								<div class="row ">
+									<div class="col-md-12">
+										<label>Movimentação:</label> <span
+											th:text="${movimentacaoUnidade.tipoMovimento}"></span>
+									</div>
+									<div class="col-md-12">
+										<label> Data Inicio: </label><span
+											th:text="${movimentacaoUnidade.dataInicio}"></span>
+									</div>
+									<div class="col-md-12">
+										<label> Data Fim: </label><span
+											th:text="${movimentacaoUnidade.dataFim}"></span>
+									</div>
+								</div>
+							</div>
+							<!-- 							<a href="movimentacao/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0">Movimentações</button></a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
+
+

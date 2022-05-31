@@ -1,0 +1,40 @@
+<html>
+<head th:replace="~{base :: head}"></head>
+<body>
+	<div th:replace="~{base :: logo}"></div>
+
+	<div class="container">
+		<div class="jumbotron mb-0">
+			<h1 class="display-4">Movimentacao</h1>
+		</div>
+		<div class="border card-body mt-3 mb-3">
+			<form th:object="${movimentacaoNova}" class="card-body"
+				action="/movimentacao/novo" method="POST">
+
+				<label>Conteiner: </label> <label
+					th:text="${movimentacaoNova.conteiner.conteinerLetra}"> </label> <label
+					th:text="${movimentacaoNova.conteiner.conteinerNumero}"> </label>
+				<br> <input th:field="${movimentacaoNova.conteiner.id}"
+					type="hidden" /> <label for="tipoMovimento"> Tipo
+					Movimento:</label> <input th:field="*{tipoMovimento}"
+					th:errorclass="is-invalid" class="form-control mb-1"
+					placeholder="(embarque, descarga, gate in, gate out, reposicionamento, pesagem, scanner)" />
+				<div class="invalid-feedback" th:errors="*{tipoMovimento}">
+					Erro da Letra do Conteiner</div>
+
+				<label for="dataInicio"> Data Inicio:</label> <input
+					th:field="*{dataInicio}" th:errorclass="is-invalid"
+					class="form-control mb-1" type="date" />
+				<div class="invalid-feedback" th:errors="*{dataInicio}">Erro
+					da Letra do Conteiner</div>
+				<label for="dataFim"> Data Fim:</label> 
+				<input th:field="*{dataFim}"
+					th:errorclass="is-invalid" class="form-control mb-1" type="date" />
+				<div class="invalid-feedback" th:errors="*{dataFim}">Erro da
+					Letra do Conteiner</div>
+				<button class="btn btn-secondary btn-lg active" type="submit">Cadastrar</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+	<head th:replace="~{base :: head}"></head>
+	<body>	
+		<div th:replace="~{base :: logo}"></div>
+		<div class="container">
+			<div class="jumbotron mb-0">
+				<h1 class="display-4"> Novo Cliente</h1>
+			</div>
+
+	       <div class="border card-body mt-3" > 
+			<form th:object="${cliente}" class="card-body" action="/cliente/novo" method="POST">
+
+					<div>
+						<label>NOME:</label>
+							<input th:field="*{nome}" th:errorclass="is-invalid" class="form-control mb-1" placeholder="Nome do Cliente"/>
+							<div class="invalid-feedback" th:errors="*{nome}">
+								Erro no nome do Cliente
+							</div>
+							
+							<label>CPF / CNPJ :</label>
+							<input th:field="*{cpfCnpj}" th:errorclass="is-invalid" class="form-control mb-1" placeholder="Nome do Cliente"/>
+							<div class="invalid-feedback" th:errors="*{cpfCnpj}">
+								Erro no nome do Cliente
+							</div>
+						<button class="btn btn-secondary btn-lg active" type="submit">Cadastrar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
